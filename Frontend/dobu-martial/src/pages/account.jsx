@@ -16,6 +16,9 @@ export default function Account() {
               Update Membership
             </button>
             <button className="ghost" type="button">
+              login/signup
+            </button>
+            <button className="ghost" type="button">
               Download Waivers
             </button>
           </div>
@@ -145,30 +148,6 @@ export default function Account() {
             </ul>
             <button className="ghost" type="button">
               Update Goals
-            </button>
-          </section>
-
-          <section className="account-card account-card-wide">
-            <header>
-              <h3>Upcoming sessions</h3>
-              <span>Next 7 days</span>
-            </header>
-            <div className="upcoming-grid">
-              <div>
-                <p className="upcoming-time">Wed · 6:00 PM</p>
-                <p>Kickboxing Ignite</p>
-              </div>
-              <div>
-                <p className="upcoming-time">Fri · 5:00 PM</p>
-                <p>Weapons & Forms</p>
-              </div>
-              <div>
-                <p className="upcoming-time">Sat · 9:00 AM</p>
-                <p>Family Class</p>
-              </div>
-            </div>
-            <button className="primary" type="button">
-              Book Another Class
             </button>
           </section>
         </div>
