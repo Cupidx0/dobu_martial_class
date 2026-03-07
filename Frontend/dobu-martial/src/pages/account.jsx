@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Account() {
   return (
@@ -16,8 +17,12 @@ export default function Account() {
               Update Membership
             </button>
             <button className="ghost" type="button">
-              login/signup
+              <Link to="/login">Login</Link>
             </button>
+            or
+            <button className="ghost" type="button">
+              <Link to="/signup">Sign Up</Link>
+            </button>   
             <button className="ghost" type="button">
               Download Waivers
             </button>
