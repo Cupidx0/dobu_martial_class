@@ -972,6 +972,52 @@
   box-shadow: 0 15px 30 rgba(78, 113, 60, 0.12);
   background-color:linear-gradient(135deg, #4CAF50, #45a049);
 }
+/*signup*/
+.signup-page{
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+}
+.signup-page form {
+  background: #000000;
+  padding: 2.5rem;
+  color: #ffffff;
+  border-radius: 22px;
+  align-items: center;
+  border: 1px solid rgba(206, 205, 205, 0.08);
+  box-shadow: 0 18px 40px rgba(28, 27, 25, 0.08);
+  display: grid;
+  gap: 1.4rem;
+  width: 320px;
+}
+.signup-page form label {
+  font-weight: 500;
+  font-size: large;
+  text-align: left;
+}
+.signup-page form input {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(206, 205, 205, 0.2);
+  background: #ffffff;
+  color: #000000;
+}
+.signup-page form button {
+  border: 1px solid rgba(28, 27, 25, 0.2);
+  background: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(28, 27, 25, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.signup-page form button:hover {  transform: translateY(-2px);
+  box-shadow: 0 15px 30 rgba(78, 113, 60, 0.12);
+  background-color:linear-gradient(135deg, #4CAF50, #45a049);
+}
 .account-card {
   background: #ffffff;
   padding: 2rem;

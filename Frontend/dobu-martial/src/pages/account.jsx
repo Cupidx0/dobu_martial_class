@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import {useAuth} from './Authcontext';
 export default function Account() {
+  const {user} = useAuth();
+  const mail = user ? user.email.replace("@gmail.com","") : "";
+  const userDetails = user ? `${mail}` : "Not logged in";
+  const usermail = user ? user.email:"";
   return (
     <div className="account-page">
       <header className="sub-hero account-hero">
@@ -30,7 +34,7 @@ export default function Account() {
         </div>
         <div className="account-banner">
           <div>
-            <p className="account-name">Avery Chen</p>
+            <p className="account-name">{userDetails}</p>
             <span className="account-role">Momentum Member · Active</span>
           </div>
           <div className="account-badge">
@@ -51,11 +55,11 @@ export default function Account() {
             <div className="account-fields">
               <div>
                 <label>Full name</label>
-                <p>Avery Chen</p>
+                <p>{userDetails}</p>
               </div>
               <div>
                 <label>Email</label>
-                <p>avery.chen@email.com</p>
+                <p>{usermail}</p>
               </div>
               <div>
                 <label>Phone</label>

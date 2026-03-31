@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function Footer() {
+    const currentDate = new Date()
+    const new_date = currentDate.getFullYear()
   return (
     <footer className="footer">
       <div className="footer-grid">
@@ -17,7 +19,7 @@ export default function Footer() {
         </div>
         <div>
           <p className="footer-title">Visit</p>
-          <p>1420 Meridian Ave</p>
+          <p>crawley college</p>
           <p>Mon-Sun: 6:00 AM - 9:00 PM</p>
         </div>
         <div>
@@ -28,7 +30,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© 2026 Dobu Martial Arts. All rights reserved.</span>
+        <span>© {new_date} Dobu Martial Arts. All rights reserved.</span>
         <span>Privacy · Terms · Accessibility</span>
       </div>
     </footer>
