@@ -59,7 +59,7 @@ def _firebase_auth_request(url, email, password):
         return None, ("FIREBASE_WEB_API_KEY is not configured on the backend.", 500)
 
     response = requests.post(
-        f"{url}?key={FIREBASE_WEB_API_KEY}",
+        f"{url}?key={FIREBASE_WEB_API_KEY}||{'AIzaSyB43w3smV-qtgYEHC_TQEWRwkmgU7A7jeM'}",
         json={
             "email": email,
             "password": password,
