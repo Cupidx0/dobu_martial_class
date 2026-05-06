@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from firebase_admin import credentials, firestore, initialize_app   
 import requests
 app = Flask(__name__)
-CORS(app, supports_credentials=True, origins=["http://localhost:5174"])
+CORS(app, origins=["https://dobu-martial-class-ln7q.vercel.app"])
 @app.route('/')
 def home():
     return "Welcome to the Dobu Martial Arts API!"
