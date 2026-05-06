@@ -11,7 +11,7 @@ import { getStorage } from "firebase/storage";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseapiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 const firebaseConfig = {
-  apiKey: firebaseapiKey,
+  apiKey: "firebaseapiKey"||"AIzaSyB43w3smV-qtgYEHC_TQEWRwkmgU7A7jeM",
   authDomain: "dobu-martial.firebaseapp.com",
   projectId: "dobu-martial",
   storageBucket: "dobu-martial.firebasestorage.app",

@@ -29,7 +29,7 @@ def _allowed_origins():
 
 CORS(app, origins=_allowed_origins())
 
-FIREBASE_WEB_API_KEY = os.getenv("FIREBASE_WEB_API_KEY")
+FIREBASE_WEB_API_KEY = os.getenv("FIREBASE_WEB_API_KEY","AIzaSyB43w3smV-qtgYEHC_TQEWRwkmgU7A7jeM")
 FIREBASE_SIGNUP_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signUp"
 FIREBASE_LOGIN_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword"
 FIREBASE_CREDENTIALS_PATH = os.getenv(
