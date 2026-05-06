@@ -1,27 +1,43 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../Utils/Firebase'; // adjust if your firebase config is elsewhere
+import { createContext, useContext, useState } from 'react'
 
-const AuthContext = createContext();
+const AuthContext = createContext()
+const STORAGE_KEY = 'dobu-auth-user'
+
+function readStoredUser() {
+  const rawUser = localStorage.getItem(STORAGE_KEY)
+  if (!rawUser) {
+    return null
+  }
+
+  try {
+    return JSON.parse(rawUser)
+  } catch {
+    localStorage.removeItem(STORAGE_KEY)
+    return null
+  }
+}
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUserState] = useState(() => readStoredUser())
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setIsLoggedIn(!!firebaseUser);
-      setUser(firebaseUser);
-    });
+  const setUser = (nextUser) => {
+    setUserState(nextUser)
+    if (nextUser) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextUser))
+      return
+    }
 
-    return () => unsubscribe();
-  }, []);
+    localStorage.removeItem(STORAGE_KEY)
+  }
 
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, user }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  const value = {
+    isLoggedIn: Boolean(user),
+    user,
+    setUser,
+    logout: () => setUser(null),
+  }
 
-export const useAuth = () => useContext(AuthContext);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+export const useAuth = () => useContext(AuthContext)

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import {useAuth} from './Authcontext';
 export default function Account() {
   const {user} = useAuth();
-  const mail = user ? user.email.replace("@gmail.com","") : "";
-  const userDetails = user ? `${mail}` : "Not logged in";
-  const usermail = user ? user.email:"";
+  const userDetails = user?.username || user?.email || "Not logged in";
+  const usermail = user?.email || "";
   return (
     <div className="account-page">
       <header className="sub-hero account-hero">

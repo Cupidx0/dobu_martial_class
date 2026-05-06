@@ -1,15 +1,16 @@
-import React,{useState} from "react";
-import {auth} from "../Utils/Firebase"
-import { signInWithEmailAndPassword} from "firebase/auth";
-import { db } from '../Utils/Firebase';  
-import { collection,addDoc } from "firebase/firestore";
-import { Link , useNavigate} from "react-router-dom";
-import {toast} from 'react-hot-toast';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { loginWithAssistant } from "../Utils/Assistant";
+import { useAuth } from "./Authcontext";
+
 export default function Login(){
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { setUser } = useAuth();
+
     const handle_user_sign_in = async(e)=>{
         e.preventDefault();
         setError("");
@@ -25,21 +26,18 @@ export default function Login(){
             return;
         }
         try{
-            const userCredential = await signInWithEmailAndPassword(auth, Email, Password);
-            const user = userCredential.user;
-            await addDoc(collection(db, "logins"), {
+            const response = await loginWithAssistant({
                 email: Email,
-                timestamp: new Date()
+                password: Password,
             });
-            console.log('Logged in:', user);
-            navigate("/Homepage");
+            setUser(response.user);
+            navigate("/account");
             toast.success("Login successful!");
             setEmail("");
             setPassword("");
         } catch (error) {
-            let msg =error.message.replace("Firebase: ","").replace("(auth/","").replace(").","");
+            const msg = error.message;
             setError(msg);
-            console.error("Registration error:", msg);
             setError("Login failed: " + msg);
             toast.error("Login failed: " + msg);
         };

@@ -1,10 +1,9 @@
-import React,{useState} from "react";
-import {auth} from "../Utils/Firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { db } from '../Utils/Firebase';  
-import { doc, setDoc } from "firebase/firestore";
-import { Link , useNavigate} from "react-router-dom";
-import {toast} from 'react-hot-toast';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { signUpWithAssistant } from "../Utils/Assistant";
+import { useAuth } from "./Authcontext";
+
 export default function Signup() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -12,6 +11,8 @@ export default function Signup() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { setUser } = useAuth();
+
     const handle_user_signup =async(e)=>{
         e.preventDefault();
         setError("");
@@ -32,20 +33,17 @@ export default function Signup() {
             return;
         }
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            await setDoc(doc(db, "users", user.uid), {
+            const response = await signUpWithAssistant({
                 username: username,
                 email: email,
-                createdAt: new Date()
+                password: password,
             });
-            console.log("Registered user:", userCredential.user.email);
-            navigate("/Homepage");
+            setUser(response.user);
+            navigate("/account");
             toast.success("Registration successful!");
         } catch (error) {
-            let msg =error.message.replace("Firebase: ","").replace("(auth/","").replace(").","");
+            const msg = error.message;
             setError(msg);
-            console.error("Registration error:", error);
             toast.error("Registration failed: " + msg);
         }
     }
