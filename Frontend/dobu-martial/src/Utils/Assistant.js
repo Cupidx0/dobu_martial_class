@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const apiBaseUrl =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'https://dobu-martial-class.onrender.com'
+const apiBaseUrl = 'https://dobu-martial-class.onrender.com';
 
 async function apiRequest(path, payload) {
   try {
