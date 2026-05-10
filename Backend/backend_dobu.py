@@ -21,6 +21,7 @@ def _allowed_origins():
     defaults = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://dobu-martial-class-ln7q.gfa.com.de/",
         "https://dobu-martial-class-ln7q-fqzx7j9jn-cupidx0s-projects.vercel.app",
         "https://dobu-martial-class-ln7q.vercel.app",
     ]
